@@ -1,0 +1,10 @@
+**/target/
+frontend/node_modules/
+frontend/dist/
+data/
+_archive/
+.cursor/
+logs/
+derby.log
+*.class
+_hold/nacos-lib/

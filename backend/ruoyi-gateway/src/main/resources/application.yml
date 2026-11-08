@@ -1,0 +1,54 @@
+spring:
+  codec:
+    max-in-memory-size: 10MB
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: ruoyi-auth
+              uri: lb://ruoyi-auth
+              predicates:
+                - Path=/auth/**
+              filters:
+                - name: CacheRequestBody
+                  args:
+                    bodyClass: java.lang.String
+                - ValidateCodeFilter
+                - StripPrefix=1
+            - id: ruoyi-system
+              uri: lb://ruoyi-system
+              predicates:
+                - Path=/system/**
+              filters:
+                - StripPrefix=1
+            - id: ruoyi-tool
+              uri: lb://ruoyi-tool
+              predicates:
+                - Path=/tool/**
+
+security:
+  captcha:
+    enabled: true
+    type: math
+  xss:
+    enabled: true
+    excludeUrls:
+      - /system/notice
+      - /tool/sheet/export
+  ignore:
+    whites:
+      - /auth/logout
+      - /auth/login
+      - /auth/register
+      - /*/v2/api-docs
+      - /*/v3/api-docs
+      - /csrf
+
+seckill:
+  sign-secret: seckill-demo-secret

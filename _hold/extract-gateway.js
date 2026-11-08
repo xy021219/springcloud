@@ -1,0 +1,10 @@
+const fs = require("fs");
+const s = fs.readFileSync("D:/ProjectFile/sheet-editor/_upstream/RuoYi-Cloud/sql/ry_config_20260918.sql", "utf8");
+const i = s.indexOf("ruoyi-gateway-dev.yml");
+const chunk = s.slice(i, i + 12000);
+const start = chunk.indexOf("spring:");
+const body = chunk.slice(start);
+const cut = body.indexOf("','");
+const yml = body.slice(0, cut).replace(/\\n/g, "\n").replace(/\\'/g, "'");
+const a = yml.indexOf("ruoyi-file");
+fs.writeFileSync("D:/ProjectFile/sheet-editor/_hold/gateway-snip.txt", yml.slice(Math.max(0, a - 500), a + 700) + "\n\n====XSS====\n" + yml.slice(yml.indexOf("exclude") - 100, yml.indexOf("exclude") + 600), "utf8");

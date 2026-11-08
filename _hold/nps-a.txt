@@ -1,0 +1,170 @@
+Compiled from "NacosPropertySource.java"
+public class com.alibaba.cloud.nacos.client.NacosPropertySource extends org.springframework.core.env.MapPropertySource {
+  private final java.lang.String group;
+
+  private final java.lang.String dataId;
+
+  private final java.util.Date timestamp;
+
+  private final boolean isRefreshable;
+
+  com.alibaba.cloud.nacos.client.NacosPropertySource(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.Date, boolean);
+    Code:
+       0: aload_0
+       1: ldc           #3                  // String ,
+       3: iconst_2
+       4: anewarray     #5                  // class java/lang/CharSequence
+       7: dup
+       8: iconst_0
+       9: aload_2
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: aload_1
+      14: aastore
+      15: invokestatic  #7                  // Method java/lang/String.join:(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+      18: aload_3
+      19: invokespecial #13                 // Method org/springframework/core/env/MapPropertySource."<init>":(Ljava/lang/String;Ljava/util/Map;)V
+      22: aload_0
+      23: aload_1
+      24: putfield      #19                 // Field group:Ljava/lang/String;
+      27: aload_0
+      28: aload_2
+      29: putfield      #25                 // Field dataId:Ljava/lang/String;
+      32: aload_0
+      33: aload         4
+      35: putfield      #28                 // Field timestamp:Ljava/util/Date;
+      38: aload_0
+      39: iload         5
+      41: putfield      #32                 // Field isRefreshable:Z
+      44: return
+
+  public com.alibaba.cloud.nacos.client.NacosPropertySource(java.util.List<org.springframework.core.env.PropertySource<?>>, java.lang.String, java.lang.String, java.util.Date, boolean);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: aload_3
+       3: aload_2
+       4: aload_3
+       5: aload_1
+       6: invokestatic  #36                 // Method getSourceMap:(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Ljava/util/Map;
+       9: aload         4
+      11: iload         5
+      13: invokespecial #40                 // Method "<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Date;Z)V
+      16: return
+
+  private static java.util.Map<java.lang.String, java.lang.Object> getSourceMap(java.lang.String, java.lang.String, java.util.List<org.springframework.core.env.PropertySource<?>>);
+    Code:
+       0: aload_2
+       1: invokestatic  #43                 // Method org/springframework/util/CollectionUtils.isEmpty:(Ljava/util/Collection;)Z
+       4: ifeq          11
+       7: invokestatic  #49                 // Method java/util/Collections.emptyMap:()Ljava/util/Map;
+      10: areturn
+      11: aload_2
+      12: invokeinterface #55,  1           // InterfaceMethod java/util/List.size:()I
+      17: iconst_1
+      18: if_icmpne     60
+      21: aload_2
+      22: iconst_0
+      23: invokeinterface #61,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      28: checkcast     #65                 // class org/springframework/core/env/PropertySource
+      31: astore_3
+      32: aload_3
+      33: ifnull        60
+      36: aload_3
+      37: invokevirtual #67                 // Method org/springframework/core/env/PropertySource.getSource:()Ljava/lang/Object;
+      40: astore        5
+      42: aload         5
+      44: instanceof    #71                 // class java/util/Map
+      47: ifeq          60
+      50: aload         5
+      52: checkcast     #71                 // class java/util/Map
+      55: astore        4
+      57: aload         4
+      59: areturn
+      60: new           #73                 // class java/util/LinkedHashMap
+      63: dup
+      64: invokespecial #75                 // Method java/util/LinkedHashMap."<init>":()V
+      67: astore_3
+      68: new           #78                 // class java/util/ArrayList
+      71: dup
+      72: invokespecial #80                 // Method java/util/ArrayList."<init>":()V
+      75: astore        4
+      77: aload_2
+      78: invokeinterface #81,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      83: astore        5
+      85: aload         5
+      87: invokeinterface #85,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      92: ifeq          164
+      95: aload         5
+      97: invokeinterface #91,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     102: checkcast     #65                 // class org/springframework/core/env/PropertySource
+     105: astore        6
+     107: aload         6
+     109: ifnonnull     115
+     112: goto          85
+     115: aload         6
+     117: instanceof    #14                 // class org/springframework/core/env/MapPropertySource
+     120: ifeq          151
+     123: aload         6
+     125: checkcast     #14                 // class org/springframework/core/env/MapPropertySource
+     128: astore        7
+     130: aload         7
+     132: invokevirtual #94                 // Method org/springframework/core/env/MapPropertySource.getSource:()Ljava/lang/Object;
+     135: checkcast     #71                 // class java/util/Map
+     138: astore        8
+     140: aload_3
+     141: aload         8
+     143: invokeinterface #95,  2           // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+     148: goto          161
+     151: aload         4
+     153: aload         6
+     155: invokeinterface #99,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     160: pop
+     161: goto          85
+     164: aload         4
+     166: invokeinterface #103,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     171: ifne          200
+     174: aload_3
+     175: ldc           #3                  // String ,
+     177: iconst_2
+     178: anewarray     #5                  // class java/lang/CharSequence
+     181: dup
+     182: iconst_0
+     183: aload_1
+     184: aastore
+     185: dup
+     186: iconst_1
+     187: aload_0
+     188: aastore
+     189: invokestatic  #7                  // Method java/lang/String.join:(Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+     192: aload         4
+     194: invokeinterface #105,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     199: pop
+     200: aload_3
+     201: areturn
+
+  public java.lang.String getGroup();
+    Code:
+       0: aload_0
+       1: getfield      #19                 // Field group:Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String getDataId();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field dataId:Ljava/lang/String;
+       4: areturn
+
+  public java.util.Date getTimestamp();
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field timestamp:Ljava/util/Date;
+       4: areturn
+
+  public boolean isRefreshable();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field isRefreshable:Z
+       4: ireturn
+}
